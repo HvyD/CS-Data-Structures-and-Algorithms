@@ -6,7 +6,7 @@ Created on Mon Aug  6 04:28:20 2018
 @author: hvyd
 """
 
-class node:
+class Node:
         def __init__(self,value):
                 self.info = value
                 self.link = None
@@ -23,7 +23,7 @@ class SingleLinkedList:
                         print("List is :  ")
                         p = self.start
                         while p is not None:
-                                print(p.info , " ", rnd='')
+                                print(p.info , " ", end='')
                                 p = p.link
                         print()
         
@@ -46,40 +46,135 @@ class SingleLinkedList:
                         position+=1
                         p = p.link
                 else:
-                        print(x," not found is list")
+                        print(x," not found in list")
                         return False
                 
                                 
         
         def insert_in_beginning(self, data):
-                pass
+                temp = Node(data)
+                temp.link = self.start
+                self.start = temp
         
         def insert_at_end(self, data):
-                pass
+                temp = Node(data)
+                if self.start is None:
+                        self.start = temp
+                        return
+                p = self.start
+                while p.link is not None:
+                        p = p.link
+                p.link = temp
         
         def create_list(self):
-                pass
+                n = int(input("Enter the number of nodes : "))
+                if n == 0:
+                        return
+                for i in range(n):
+                        data = int(input("Enter the element to be inserted : "))
+                        self.insert_at_end(data)
         
         def insert_after(self, data, x):
-                pass
+                p = self.start
+                while p is not None:
+                        if p.info == x:
+                                break
+                        p = p.link
+                if p is None:
+                        print(x, "not present in the list")
+                else:
+                        temp = Node(data)
+                        temp.link = p.link
+                        p.link = temp
         
         def insert_before(self, data, x):
-                pass
-        
+                if self.start is None:
+                        print("List is Emplty")
+                        return
+                
+                if x == self.start.info:
+                        temp = Node(data)
+                        temp.link = self.start
+                        self.start = temp
+                        return
+                
+                p = self.start
+                while p.link is not None:
+                        if p.link.info == x:
+                                break
+                        p = p.link
+                        
+                if p.link is None:
+                        print(x, "not present in the list")
+                else:
+                        temp = Node(data)
+                        temp.link = p.link
+                        p.link = temp
+                        
+                        
         def insert_at_position(self, data,k):
-                pass
+                if k == 1:
+                        temp = Node(data)
+                        temp.link = self.start
+                        self.start = temp
+                        return
+                p = self.start
+                i = 1
+                while i<k-1 and p is not None: 
+                        p = p.link
+                        i+=1
+                if p is None:
+                        print("you can insert only up to position",i)
+                else:
+                        temp = Node(data)
+                        temp.link = p.link
+                        p.link = temp
         
         def delete_node(self, x):
-                pass
+                if self.start is None:
+                        print("List is empyt")
+                        return
+                if self.start.info == x:
+                        self.start = self.start.link
+                        return
+                p = self.start
+                while p.link is not None:
+                        if p.link.info == x:
+                                break
+                        p = p.link
+                
+                if p.link is None:
+                        print("Element ", x ,"not in list")
+                else:
+                        p.link = p.link.link
+                        
         
         def delete_first_node(self):
-                pass
+                if self.start is None:
+                        return
+                self.start = self.start.link
         
         def delete_last_node(self):
-                pass
+                if self.start is None:
+                        return
+                if self.start.link is None:
+                        self.start = None
+                        return
+                p = self.start
+                while p.link.link is not None:
+                        p = p.link
+                p.link = None
+        
         
         def reverse_list(self):
-                pass
+                prev = None
+                p = self.start
+                while p is not None:
+                        next = p.link
+                        p.link = prev
+                        prev = p
+                        p = next
+                self.start = prev
         
         def bubble_sort_exdata(self):
                 pass
@@ -111,7 +206,7 @@ class SingleLinkedList:
         def _merge_sort_rec(self, listStart):
                 pass
         def _divide_list(self, p):
-                pass
+                pass 
         
         
 list = SingleLinkedList()
