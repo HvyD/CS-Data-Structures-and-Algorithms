@@ -177,10 +177,35 @@ class SingleLinkedList:
                 self.start = prev
         
         def bubble_sort_exdata(self):
-                pass
+                end = None
+                
+                while end != self.start.link:
+                        p = self.start
+                        while p.link != end:
+                                q = p.link
+                                if p.info > q.info:
+                                        p.info,q.info = q.info,p.info
+                                p = p.link
+                        end = p
         
         def bubble_sort_exlinks(self):
-                pass
+                end = None
+                while end != self.start:
+                        r = p = self.start
+                        while p.link != end:
+                                q = p.link
+                                if p.info > q.info:
+                                        p.link = q.link
+                                        q.link = p
+                                        if p!= self.start:
+                                                r.link = q
+                                        else:
+                                                self.start = q
+                                        p,q = q,p
+                                r = p
+                                p = p.link
+                        end = p
+                        
         
         def has_cycle(self):
                 pass
